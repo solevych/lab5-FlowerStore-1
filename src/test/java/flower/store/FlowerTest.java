@@ -40,28 +40,28 @@ public class FlowerTest {
 
     @Test
     public void testEqualFlowers() {
-        Flower flower1 = new Flower();
-        flower1.setColor(FlowerColor.RED);
-        flower1.setFlowerType(FlowerType.Rose);
+        Flower flowerOne = new Flower();
+        flowerOne.setColor(FlowerColor.RED);
+        flowerOne.setFlowerType(FlowerType.Rose);
 
-        Flower flower2 = new Flower();
-        flower2.setColor(FlowerColor.RED);
-        flower2.setFlowerType(FlowerType.Rose);
+        Flower flowerTwo = new Flower();
+        flowerTwo.setColor(FlowerColor.RED);
+        flowerTwo.setFlowerType(FlowerType.Rose);
 
-        Assertions.assertTrue(flower1.equal(flower2));
+        Assertions.assertTrue(flowerOne.equal(flowerTwo));
     }
 
     @Test
     public void testNotEqualFlowers() {
-        Flower flower1 = new Flower();
-        flower1.setColor(FlowerColor.RED);
-        flower1.setFlowerType(FlowerType.Rose);
+        Flower flowerOne = new Flower();
+        flowerOne.setColor(FlowerColor.RED);
+        flowerOne.setFlowerType(FlowerType.Rose);
 
-        Flower flower2 = new Flower();
-        flower2.setColor(FlowerColor.BLUE);
-        flower2.setFlowerType(FlowerType.Tulip);
+        Flower flowerTwo = new Flower();
+        flowerTwo.setColor(FlowerColor.BLUE);
+        flowerTwo.setFlowerType(FlowerType.Tulip);
 
-        Assertions.assertFalse(flower1.equal(flower2));
+        Assertions.assertFalse(flowerOne.equal(flowerTwo));
     }
 
     

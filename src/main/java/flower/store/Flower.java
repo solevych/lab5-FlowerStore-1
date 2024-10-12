@@ -28,8 +28,9 @@ public class Flower {
         this.sepalLenght = flower.sepalLenght;
     }
 
-    public boolean equal(Flower flower2){
-        return (color.toString().equals(flower2.getColor()) & flowerType == flower2.getFlowerType());
+    public boolean equal(Flower flower) {
+        return (color.toString().equals(flower.getColor()) 
+        & flowerType == flower.getFlowerType());
 
     }
 }

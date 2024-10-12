@@ -22,7 +22,7 @@ public class FlowerBucketTest {
     public void testPrice() {
         int price = RANDOM_GENERATOR.nextInt(MAX_PRICE);
         int quantity = RANDOM_GENERATOR.nextInt(MAX_QUANTITY);
-        Flower flower = new Flower();
+        Flower flower = new Rose();
         flower.setPrice(price);
         FlowerPack flowerPack = new FlowerPack(flower, quantity);
         flowerBucket.add(flowerPack);
@@ -42,23 +42,30 @@ public class FlowerBucketTest {
         flowerBucket.add(flowerPack);
         
         Assertions.assertEquals(1, flowerBucket.getFlowerPacks().size());
-        Assertions.assertEquals(flowerPack, flowerBucket.getFlowerPacks().get(0));
+        Assertions.assertEquals(flowerPack, 
+        flowerBucket.getFlowerPacks().get(0));
     }
 
     @Test
     public void testGetFlowerPacks() {
-        Flower flower1 = new Flower();
-        flower1.setPrice(10);
-        FlowerPack flowerPack1 = new FlowerPack(flower1, 2);
-        flowerBucket.add(flowerPack1);
+        Flower flowerOne = new Flower();
+        flowerOne.setPrice(10);
+        FlowerPack flowerPackOne = new FlowerPack(flowerOne, 2);
+        flowerBucket.add(flowerPackOne);
         
-        Flower flower2 = new Flower();
-        flower2.setPrice(15);
-        FlowerPack flowerPack2 = new FlowerPack(flower2, 3);
-        flowerBucket.add(flowerPack2);
+        Flower flowerTwo = new Flower();
+        flowerTwo.setPrice(15);
+        FlowerPack flowerPackTwo = new FlowerPack(flowerTwo, 3);
+        flowerBucket.add(flowerPackTwo);
         
-        Assertions.assertEquals(2, flowerBucket.getFlowerPacks().size());
-        Assertions.assertTrue(flowerBucket.getFlowerPacks().contains(flowerPack1));
-        Assertions.assertTrue(flowerBucket.getFlowerPacks().contains(flowerPack2));
+        Assertions.assertEquals(2, flowerBucket
+                        .getFlowerPacks()
+                        .size());
+        Assertions.assertTrue(flowerBucket
+                        .getFlowerPacks()
+                        .contains(flowerPackOne));
+        Assertions.assertTrue(flowerBucket
+                        .getFlowerPacks()
+                        .contains(flowerPackTwo));
     }
 }
