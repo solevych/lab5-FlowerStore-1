@@ -13,7 +13,7 @@ public class FlowerBucket {
 
     }
 
-    public void addFlowerPack(FlowerPack flowerPack){
+    public void add(FlowerPack flowerPack){
         flowerPacks.add(flowerPack);
 
     }
@@ -24,7 +24,10 @@ public class FlowerBucket {
         for (FlowerPack flowerPack : flowerPacks) {
             price += flowerPack.getPrice();
         }
-
         return price;
+    }
+
+    public List<FlowerPack> getFlowerPacks() {
+        return new ArrayList<>(flowerPacks); 
     }
 }

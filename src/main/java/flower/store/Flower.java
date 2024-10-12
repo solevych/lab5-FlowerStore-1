@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Flower {
-    private double sepalLength;
+    private double sepalLenght;
     private FlowerColor color;
     private double price;
     private FlowerType flowerType;
@@ -26,5 +26,10 @@ public class Flower {
         this.flowerType = flower.flowerType;
         this.price = flower.price;
         this.sepalLenght = flower.sepalLenght;
+    }
+
+    public boolean equal(Flower flower2){
+        return (color.toString().equals(flower2.getColor()) & flowerType == flower2.getFlowerType());
+
     }
 }

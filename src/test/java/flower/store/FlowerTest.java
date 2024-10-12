@@ -30,4 +30,39 @@ public class FlowerTest {
         flower.setColor(color);
         Assertions.assertEquals("#FF0000", flower.getColor());
     }
+
+    @Test
+    public void testFlowerType() {
+        FlowerType type = FlowerType.Rose;
+        flower.setFlowerType(type);
+        Assertions.assertEquals(type, flower.getFlowerType());
+    }
+
+    @Test
+    public void testEqualFlowers() {
+        Flower flower1 = new Flower();
+        flower1.setColor(FlowerColor.RED);
+        flower1.setFlowerType(FlowerType.Rose);
+
+        Flower flower2 = new Flower();
+        flower2.setColor(FlowerColor.RED);
+        flower2.setFlowerType(FlowerType.Rose);
+
+        Assertions.assertTrue(flower1.equal(flower2));
+    }
+
+    @Test
+    public void testNotEqualFlowers() {
+        Flower flower1 = new Flower();
+        flower1.setColor(FlowerColor.RED);
+        flower1.setFlowerType(FlowerType.Rose);
+
+        Flower flower2 = new Flower();
+        flower2.setColor(FlowerColor.BLUE);
+        flower2.setFlowerType(FlowerType.Tulip);
+
+        Assertions.assertFalse(flower1.equal(flower2));
+    }
+
+    
 }
