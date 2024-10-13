@@ -111,7 +111,8 @@ public class StoreTest {
 
         List<FlowerPack> result = store.search(null, 
                                 FlowerColor.YELLOW);
-        Assertions.assertTrue(flowerYellowTulip.equal(result.get(0).getFlower()));
+        Assertions.assertTrue(flowerYellowTulip.equal(
+            result.get(0).getFlower()));
     }
 
     /**
