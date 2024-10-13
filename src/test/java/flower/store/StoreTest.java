@@ -26,17 +26,25 @@ public class StoreTest {
         store = new Store();
     }
 
+    private Flower createFlower(FlowerType type, FlowerColor color, double price) {
+        Flower flower = new Flower();
+        flower.setFlowerType(type);
+        flower.setColor(color);
+        flower.setPrice(price);
+        return flower;
+    }
+
+    private FlowerPack createFlowerPack(Flower flower, int quantity) {
+        return new FlowerPack(flower, quantity);
+    }
+
     /**
      * Tests adding a flower pack to the store.
      */
     @Test
     public void testAddFlowerPack() {
-        Flower flower = new Flower();
-        flower.setFlowerType(FlowerType.Rose);
-        flower.setColor(FlowerColor.RED);
-        flower.setPrice(ROSE_PRICE);
-
-        FlowerPack flowerPack = new FlowerPack(flower, ROSE_QUANTITY);
+        Flower flower = createFlower(FlowerType.Rose, FlowerColor.RED, ROSE_PRICE);
+        FlowerPack flowerPack = createFlowerPack(flower, ROSE_QUANTITY);
         store.addFlowerPack(flowerPack);
 
         List<FlowerPack> allFlowerPacks = store.getFlowerPacks();
@@ -49,22 +57,12 @@ public class StoreTest {
      */
     @Test
     public void testSearchByTypeAndColor() {
-        Flower flowerRedRose = new Flower();
-        flowerRedRose.setFlowerType(FlowerType.Rose);
-        flowerRedRose.setColor(FlowerColor.RED);
-        flowerRedRose.setPrice(ROSE_PRICE);
+        store.addFlowerPack(createFlowerPack(createFlower(FlowerType.Rose, 
+        FlowerColor.RED, ROSE_PRICE), ROSE_QUANTITY));
+        store.addFlowerPack(createFlowerPack(createFlower(FlowerType.Tulip, 
+        FlowerColor.YELLOW, TULIP_PRICE), TULIP_QUANTITY));
 
-        Flower flowerYellowTulip = new Flower();
-        flowerYellowTulip.setFlowerType(FlowerType.Tulip);
-        flowerYellowTulip.setColor(FlowerColor.YELLOW);
-        flowerYellowTulip.setPrice(TULIP_PRICE);
-
-        store.addFlowerPack(new FlowerPack(flowerRedRose, ROSE_QUANTITY));
-        store.addFlowerPack(new FlowerPack(flowerYellowTulip, TULIP_QUANTITY));
-
-        // Search for red roses
-        List<FlowerPack> result = store.search(FlowerType.Rose, 
-        FlowerColor.RED);
+        List<FlowerPack> result = store.search(FlowerType.Rose, FlowerColor.RED);
         Assertions.assertEquals(1, result.size());
     }
 
@@ -73,20 +71,11 @@ public class StoreTest {
      */
     @Test
     public void testSearchByTypeOnly() {
-        Flower flowerRedRose = new Flower();
-        flowerRedRose.setFlowerType(FlowerType.Rose);
-        flowerRedRose.setColor(FlowerColor.RED);
-        flowerRedRose.setPrice(ROSE_PRICE);
+        store.addFlowerPack(createFlowerPack(createFlower(FlowerType.Rose, 
+        FlowerColor.RED, ROSE_PRICE), ROSE_QUANTITY));
+        store.addFlowerPack(createFlowerPack(createFlower(FlowerType.Tulip, 
+        FlowerColor.YELLOW, TULIP_PRICE), TULIP_QUANTITY));
 
-        Flower flowerYellowTulip = new Flower();
-        flowerYellowTulip.setFlowerType(FlowerType.Tulip);
-        flowerYellowTulip.setColor(FlowerColor.YELLOW);
-        flowerYellowTulip.setPrice(TULIP_PRICE);
-
-        store.addFlowerPack(new FlowerPack(flowerRedRose, ROSE_QUANTITY));
-        store.addFlowerPack(new FlowerPack(flowerYellowTulip, TULIP_QUANTITY));
-
-        // Search for roses
         List<FlowerPack> result = store.search(FlowerType.Rose, null);
         Assertions.assertEquals(1, result.size());
     }
@@ -96,23 +85,14 @@ public class StoreTest {
      */
     @Test
     public void testSearchByColorOnly() {
-        Flower flowerRedRose = new Flower();
-        flowerRedRose.setFlowerType(FlowerType.Rose);
-        flowerRedRose.setColor(FlowerColor.RED);
-        flowerRedRose.setPrice(ROSE_PRICE);
+        store.addFlowerPack(createFlowerPack(createFlower(FlowerType.Rose, 
+        FlowerColor.RED, ROSE_PRICE), ROSE_QUANTITY));
+        store.addFlowerPack(createFlowerPack(createFlower(FlowerType.Tulip, 
+        FlowerColor.YELLOW, TULIP_PRICE), TULIP_QUANTITY));
 
-        Flower flowerYellowTulip = new Flower();
-        flowerYellowTulip.setFlowerType(FlowerType.Tulip);
-        flowerYellowTulip.setColor(FlowerColor.YELLOW);
-        flowerYellowTulip.setPrice(TULIP_PRICE);
-
-        store.addFlowerPack(new FlowerPack(flowerRedRose, ROSE_QUANTITY));
-        store.addFlowerPack(new FlowerPack(flowerYellowTulip, TULIP_QUANTITY));
-
-        List<FlowerPack> result = store.search(null, 
-                                FlowerColor.YELLOW);
-        Assertions.assertTrue(flowerYellowTulip.equal(
-            result.get(0).getFlower()));
+        List<FlowerPack> result = store.search(null, FlowerColor.YELLOW);
+        Assertions.assertTrue(createFlower(FlowerType.Tulip, FlowerColor.YELLOW, 
+        TULIP_PRICE).equal(result.get(0).getFlower()));
     }
 
     /**
@@ -120,17 +100,10 @@ public class StoreTest {
      */
     @Test
     public void testSearchNoResults() {
-        Flower flowerRedRose = new Flower();
-        flowerRedRose.setFlowerType(FlowerType.Rose);
-        flowerRedRose.setColor(FlowerColor.RED);
-        flowerRedRose.setPrice(ROSE_PRICE);
+        Flower flowerRedRose = createFlower(FlowerType.Rose, FlowerColor.RED, ROSE_PRICE);
+        store.addFlowerPack(createFlowerPack(flowerRedRose, ROSE_QUANTITY));
 
-        store.addFlowerPack(new FlowerPack(flowerRedRose, ROSE_QUANTITY));
-
-        // Search for non-existing flower type
-        List<FlowerPack> result = store.search(FlowerType.Tulip, 
-                                            FlowerColor.RED);
+        List<FlowerPack> result = store.search(FlowerType.Tulip, FlowerColor.RED);
         Assertions.assertEquals(0, result.size());
     }
 }
-
