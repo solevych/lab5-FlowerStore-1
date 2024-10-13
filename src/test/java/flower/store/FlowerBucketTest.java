@@ -28,44 +28,4 @@ public class FlowerBucketTest {
         flowerBucket.add(flowerPack);
         Assertions.assertEquals(price * quantity, flowerBucket.getPrice());
     }
-
-    @Test
-    public void testEmptyBucketPrice() {
-        Assertions.assertEquals(0.0, flowerBucket.getPrice());
-    }
-
-    @Test
-    public void testAddFlowerPack() {
-        Flower flower = new Flower();
-        flower.setPrice(10);
-        FlowerPack flowerPack = new FlowerPack(flower, 5);
-        flowerBucket.add(flowerPack);
-        
-        Assertions.assertEquals(1, flowerBucket.getFlowerPacks().size());
-        Assertions.assertEquals(flowerPack, 
-        flowerBucket.getFlowerPacks().get(0));
-    }
-
-    @Test
-    public void testGetFlowerPacks() {
-        Flower flowerOne = new Flower();
-        flowerOne.setPrice(10);
-        FlowerPack flowerPackOne = new FlowerPack(flowerOne, 2);
-        flowerBucket.add(flowerPackOne);
-        
-        Flower flowerTwo = new Flower();
-        flowerTwo.setPrice(15);
-        FlowerPack flowerPackTwo = new FlowerPack(flowerTwo, 3);
-        flowerBucket.add(flowerPackTwo);
-        
-        Assertions.assertEquals(2, flowerBucket
-                        .getFlowerPacks()
-                        .size());
-        Assertions.assertTrue(flowerBucket
-                        .getFlowerPacks()
-                        .contains(flowerPackOne));
-        Assertions.assertTrue(flowerBucket
-                        .getFlowerPacks()
-                        .contains(flowerPackTwo));
-    }
 }

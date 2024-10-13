@@ -41,7 +41,8 @@ public class TypesTest {
     // Similar test for Chamomile
     @Test
     public void testChamomileDefaultFlowerType() {
-        Assertions.assertEquals(FlowerType.Chamomile, chamomile.getFlowerType());
+        Assertions.assertEquals(FlowerType.Chamomile, 
+        chamomile.getFlowerType());
     }
 
 

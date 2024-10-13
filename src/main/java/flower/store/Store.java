@@ -21,11 +21,11 @@ public class Store {
     
     public List<FlowerPack> search(FlowerType type, FlowerColor color) {
         return flowerPacks.stream()
-        .filter(pack -> (type == null || 
-                        pack.getFlower().getFlowerType() == type) 
-                        && (color == null || 
-                        pack.getFlower().getColor() == null || 
-                        pack.getFlower().getColor().equals(color.toString())))
+        .filter(pack -> (type == null 
+                        || pack.getFlower().getFlowerType() == type) 
+                        && (color == null 
+                        || pack.getFlower().getColor() == null 
+                        || pack.getFlower().getColor().equals(color.toString())))
         .collect(Collectors.toList());
     }
 

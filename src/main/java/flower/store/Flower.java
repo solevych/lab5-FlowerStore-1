@@ -17,9 +17,7 @@ public class Flower {
     private double price;
     private FlowerType flowerType;
 
-    public String getColor() {
-        return color.toString();
-    }
+    
 
     public Flower(Flower flower) {
         this.color = flower.color;
@@ -32,5 +30,9 @@ public class Flower {
         return (color.toString().equals(flower.getColor()) 
         & flowerType == flower.getFlowerType());
 
+    }
+    
+    public String getColor() {
+        return color.toString();
     }
 }
