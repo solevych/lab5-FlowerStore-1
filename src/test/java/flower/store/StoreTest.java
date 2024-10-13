@@ -26,7 +26,9 @@ public class StoreTest {
         store = new Store();
     }
 
-    private Flower createFlower(FlowerType type, FlowerColor color, double price) {
+    private Flower createFlower(FlowerType type, 
+                                FlowerColor color, 
+                                double price) {
         Flower flower = new Flower();
         flower.setFlowerType(type);
         flower.setColor(color);
@@ -43,7 +45,9 @@ public class StoreTest {
      */
     @Test
     public void testAddFlowerPack() {
-        Flower flower = createFlower(FlowerType.Rose, FlowerColor.RED, ROSE_PRICE);
+        Flower flower = createFlower(FlowerType.Rose, 
+                                        FlowerColor.RED, 
+                                        ROSE_PRICE);
         FlowerPack flowerPack = createFlowerPack(flower, ROSE_QUANTITY);
         store.addFlowerPack(flowerPack);
 
@@ -62,11 +66,14 @@ public class StoreTest {
         store.addFlowerPack(createFlowerPack(createFlower(FlowerType.Tulip, 
         FlowerColor.YELLOW, TULIP_PRICE), TULIP_QUANTITY));
 
-        List<FlowerPack> result = store.search(FlowerType.Rose, FlowerColor.RED);
+        List<FlowerPack> result = store.search(FlowerType.Rose, 
+                                            FlowerColor.RED);
         Assertions.assertEquals(1, result.size());
 
-        List<FlowerPack> resultColorOnly = store.search(null, FlowerColor.YELLOW);
-        Assertions.assertTrue(createFlower(FlowerType.Tulip, FlowerColor.YELLOW, 
+        List<FlowerPack> resultColorOnly = store.search(null, 
+                                                        FlowerColor.YELLOW);
+        Assertions.assertTrue(createFlower(FlowerType.Tulip, 
+                                            FlowerColor.YELLOW, 
         TULIP_PRICE).equal(resultColorOnly.get(0).getFlower()));
 
         List<FlowerPack> resultTypeOnly = store.search(FlowerType.Rose, null);
