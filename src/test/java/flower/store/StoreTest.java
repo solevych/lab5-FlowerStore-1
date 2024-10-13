@@ -63,7 +63,8 @@ public class StoreTest {
         store.addFlowerPack(new FlowerPack(flowerYellowTulip, TULIP_QUANTITY));
 
         // Search for red roses
-        List<FlowerPack> result = store.search(FlowerType.Rose, FlowerColor.RED);
+        List<FlowerPack> result = store.search(FlowerType.Rose, 
+        FlowerColor.RED);
         Assertions.assertEquals(1, result.size());
     }
 
@@ -108,7 +109,8 @@ public class StoreTest {
         store.addFlowerPack(new FlowerPack(flowerRedRose, ROSE_QUANTITY));
         store.addFlowerPack(new FlowerPack(flowerYellowTulip, TULIP_QUANTITY));
 
-        List<FlowerPack> result = store.search(null, FlowerColor.YELLOW);
+        List<FlowerPack> result = store.search(null, 
+                                FlowerColor.YELLOW);
         Assertions.assertTrue(flowerYellowTulip.equal(result.get(0).getFlower()));
     }
 
@@ -125,7 +127,8 @@ public class StoreTest {
         store.addFlowerPack(new FlowerPack(flowerRedRose, ROSE_QUANTITY));
 
         // Search for non-existing flower type
-        List<FlowerPack> result = store.search(FlowerType.Tulip, FlowerColor.RED);
+        List<FlowerPack> result = store.search(FlowerType.Tulip, 
+                                            FlowerColor.RED);
         Assertions.assertEquals(0, result.size());
     }
 }
