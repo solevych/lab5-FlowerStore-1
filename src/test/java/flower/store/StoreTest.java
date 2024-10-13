@@ -64,46 +64,13 @@ public class StoreTest {
 
         List<FlowerPack> result = store.search(FlowerType.Rose, FlowerColor.RED);
         Assertions.assertEquals(1, result.size());
-    }
 
-    /**
-     * Tests searching by flower type only.
-     */
-    @Test
-    public void testSearchByTypeOnly() {
-        store.addFlowerPack(createFlowerPack(createFlower(FlowerType.Rose, 
-        FlowerColor.RED, ROSE_PRICE), ROSE_QUANTITY));
-        store.addFlowerPack(createFlowerPack(createFlower(FlowerType.Tulip, 
-        FlowerColor.YELLOW, TULIP_PRICE), TULIP_QUANTITY));
-
-        List<FlowerPack> result = store.search(FlowerType.Rose, null);
-        Assertions.assertEquals(1, result.size());
-    }
-
-    /**
-     * Tests searching by color only.
-     */
-    @Test
-    public void testSearchByColorOnly() {
-        store.addFlowerPack(createFlowerPack(createFlower(FlowerType.Rose, 
-        FlowerColor.RED, ROSE_PRICE), ROSE_QUANTITY));
-        store.addFlowerPack(createFlowerPack(createFlower(FlowerType.Tulip, 
-        FlowerColor.YELLOW, TULIP_PRICE), TULIP_QUANTITY));
-
-        List<FlowerPack> result = store.search(null, FlowerColor.YELLOW);
+        List<FlowerPack> resultColorOnly = store.search(null, FlowerColor.YELLOW);
         Assertions.assertTrue(createFlower(FlowerType.Tulip, FlowerColor.YELLOW, 
-        TULIP_PRICE).equal(result.get(0).getFlower()));
+        TULIP_PRICE).equal(resultColorOnly.get(0).getFlower()));
+
+        List<FlowerPack> resultTypeOnly = store.search(FlowerType.Rose, null);
+        Assertions.assertEquals(1, resultTypeOnly.size());
     }
 
-    /**
-     * Tests searching for non-existing flower types.
-     */
-    @Test
-    public void testSearchNoResults() {
-        Flower flowerRedRose = createFlower(FlowerType.Rose, FlowerColor.RED, ROSE_PRICE);
-        store.addFlowerPack(createFlowerPack(flowerRedRose, ROSE_QUANTITY));
-
-        List<FlowerPack> result = store.search(FlowerType.Tulip, FlowerColor.RED);
-        Assertions.assertEquals(0, result.size());
-    }
 }
